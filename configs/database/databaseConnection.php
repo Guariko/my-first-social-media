@@ -41,6 +41,18 @@ class DataBaseClass
     {
         $this->dataBaseConnection = $dataBaseConnection;
     }
+
+    public function createUser($userData)
+    {
+        $sql = "INSERT INTO users(name, password, email, datetime)
+                VALUES(:name, :password, :email, now())";
+        $smt = $this->dataBaseConnection->prepare($sql);
+        $smt->execute([
+            ":name" => $userData["name"],
+            ":email" => $userData["email"],
+            ":password" => $userData["password"],
+        ]);
+    }
 }
 
 class DataBase
@@ -51,5 +63,10 @@ class DataBase
     static public function initialize(DataBaseClass $dataBaseObject)
     {
         return self::$dataBaseConnection = $dataBaseObject;
+    }
+
+    static public function createUser($userData)
+    {
+        return self::$dataBaseConnection->createUser($userData);
     }
 }

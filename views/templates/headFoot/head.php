@@ -24,7 +24,7 @@ if (!isset($normalizeCss)) {
     <title><?= $model ?></title>
     <link rel="stylesheet" href="<?= $normalizeCss ?>">
     <link rel="stylesheet" href="<?= $styles ?>">
-
+    <script src="https://kit.fontawesome.com/67f918e73f.js" crossorigin="anonymous"></script>
 </head>
 
 <body>

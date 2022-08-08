@@ -3,7 +3,7 @@
 /* TODO: Database connection */
 
 $dataBaseConnectionPath = "configs/database/databaseConnection.php";
-require_once("configs/controllers/classesController.php");
+require_once("configs/controllers/databaseClassesController.php");
 
 /* FIXME: Database connection ends */
 

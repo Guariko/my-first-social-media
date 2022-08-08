@@ -1,0 +1,71 @@
+/* TODO: Setting up the project starts */
+
+html {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    font-size: 62.5%;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    outline: 0;
+    overflow: hidden;
+    list-style: none;
+    list-style-type: none;
+    box-shadow: none;
+    text-decoration: none;
+    background: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+                'Helvetica Neue', sans-serif;                
+}
+
+body {
+    overflow-y: auto;
+}
+
+:root {
+    --main-color:#fdfdfd;
+    --second-color: #eee;
+    --third-color:#FF98AD;
+    --button-color: dodgerblue;
+    --button-hover-color: rgb(26, 127, 228);
+    --transparent: rgba(0, 0, 0, 0.1);
+    --section-padding: .5rem;
+    --black: #111010;
+    --grey: #444;
+    --button-size: 1.4rem;
+    --main-transition: all .2s linear;
+}
+
+p {
+    max-width: 50ch;
+}
+
+p,
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.4;
+    margin-top: 0;
+}
+
+/* FIXME: Setting up the project ends */
+
+/* TODO: Media queries start */
+
+@media screen and (min-width: 350px) {
+
+    /* TODO: Setting up the project adjustments */
+
+    :root {
+        --section-padding: 1rem;
+    }
+
+    /* FIXME: Setting up the project adjustments end */
+    
+}
+
+/* FIXME: Media queries end */
