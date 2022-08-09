@@ -1,2 +1,3 @@
 # my-first-social-media
-Building a social media website
+
+I'm still working on this project, it's not finished yet.
