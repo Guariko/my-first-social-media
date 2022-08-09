@@ -1,10 +1,5 @@
 <?php
 
-$dataBaseConnectionObject = new DataBaseConnectionClass();
-$dataBaseConnection = $dataBaseConnectionObject->connection();
-
-DataBase::initialize(new DataBaseClass($dataBaseConnection));
-
 $nameErrorMessage = null;
 $emailErrorMessage = null;
 $passwordErrorMessage = null;

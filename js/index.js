@@ -2,6 +2,9 @@
 
 const desktopWidth = 1280;
 
+const isHome = document.querySelector(".home__main");
+const isMessaging = document.querySelector(".messaging__main");
+
 /* FIXME: Setting up the project ends */
 
 /* TODO: Header starts */
@@ -10,15 +13,26 @@ const headerMobileVersionClass = "header__mobile__version";
 const headerDesktopVersion = "header__desktop__version";
 
 const header = document.querySelector(".header");
-getHeaderView();
+
+let headerViewPath;
+
+if (isHome) {
+  headerViewPath = "views/templates/headerViews/";
+} else if (isMessaging) {
+  headerViewPath = "templates/headerViews/";
+}
+
+getHeaderView(headerViewPath);
 
 window.addEventListener("resize", (e) => {
-  getHeaderView();
+  getHeaderView(headerViewPath);
 });
+
+/* FIXME: Header ends */
 
 /* TODO: Function starts */
 
-function getHeaderView() {
+function getHeaderView(headerViewPath) {
   const xmlhttp = new XMLHttpRequest();
 
   let headerView;
@@ -26,11 +40,11 @@ function getHeaderView() {
   if (window.innerWidth < desktopWidth) {
     addClass(header, headerMobileVersionClass);
     removeClass(header, headerDesktopVersion);
-    headerView = "views/templates/headerViews/headerMobileVersion.php";
+    headerView = headerViewPath + "headerMobileVersion.php";
   } else {
     addClass(header, headerDesktopVersion);
     removeClass(header, headerMobileVersionClass);
-    headerView = "views/templates/headerViews/headerDesktopVersion.php";
+    headerView = headerViewPath + "headerDesktopVersion.php";
   }
 
   xmlhttp.onreadystatechange = function () {

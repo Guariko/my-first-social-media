@@ -96,6 +96,19 @@ class DataBaseClass
 
         return $smt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function getAllUsersData($userId)
+    {
+        $sql = "SELECT * FROM users WHERE id != :userId ";
+        $smt = $this->dataBaseConnection->prepare($sql);
+        $smt->execute(
+            [
+                ":userId" => $userId,
+            ]
+        );
+
+        return $smt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 class DataBase
@@ -126,5 +139,10 @@ class DataBase
     static public function getUserData($email)
     {
         return self::$dataBaseConnection->getUserData($email);
+    }
+
+    static public function getAllUsersData($userId)
+    {
+        return self::$dataBaseConnection->getAllUsersData($userId);
     }
 }

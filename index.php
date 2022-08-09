@@ -7,7 +7,6 @@ if (!isset($_SESSION["userLogged"])) {
     die();
 }
 
-
 /* TODO: Database connection */
 
 $dataBaseConnectionPath = "configs/database/databaseConnection.php";
@@ -26,9 +25,19 @@ include("views/templates/headFoot/head.php");
 
 /* TODO: Header starts */
 
+$_SESSION["homePath"] = "index.php";
+$_SESSION["messagingPath"] = "views/messaging.php";
+$_SESSION["userImagePath"] = "images/user.png";
+
 include("views/templates/header.php");
 
 /* FIXME: Header ends */
+
+?>
+
+<main class="home__main"></main>
+
+<?php
 
 /* TODO: Foot starts */
 

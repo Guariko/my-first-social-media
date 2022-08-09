@@ -1,14 +1,13 @@
 <?php
 
-$userImagePath = "images/user.png";
-$homePath = "index.php";
+session_start();
 
 ?>
 
 <div class="header__logo__search__desktop__container">
 
     <figure class="header__logo__desktop__container">
-        <a href="<?= $homePath ?>">
+        <a href="<?= $_SESSION["homePath"] ?>">
             <i class="fas fa-g"></i>
         </a>
 
@@ -37,7 +36,7 @@ $homePath = "index.php";
 
         <li class="header__nav__bar__item__container">
             <i class="fa-solid fa-envelope"></i>
-            <a href="#" class="header__nav__bar__item">messaging</a>
+            <a href="<?= $_SESSION["messagingPath"] ?>" class="header__nav__bar__item">messaging</a>
             <div class="header__nav__bar__decoration"></div>
         </li>
 
@@ -49,7 +48,7 @@ $homePath = "index.php";
 
         <li class="header__nav__bar__item__container header__user__logo__desktop ">
             <figure>
-                <img src="<?= $userImagePath ?>" alt="" class="user__image__desktop">
+                <img src="<?= $_SESSION["userImagePath"] ?>" alt="" class="user__image__desktop">
             </figure>
         </li>
     </ul>

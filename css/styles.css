@@ -7,6 +7,8 @@
     --search-here-size: 1rem;
     --search-here-icon-size: 1rem;
     --mobile-message-icon-size: 1.8rem;
+    --friend-name-size: 1.5rem;
+    --search-friend-icon-size: 1.7rem;
 }
 
 /* FIXME: Variables end */
@@ -86,6 +88,90 @@
 
 /* FIXME: Header ends */
 
+/* TODO: Messaging start */
+
+.messaging__main {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.messaging__friend__container,
+.message__friends__container {
+    display: flex;
+}
+
+.message__friends__container {
+    flex-direction: column;
+    background: var(--main-color);
+    border-top: 1px solid var(--black);
+}
+
+.friend__image {
+    aspect-ratio: 1;
+    width: 4rem;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.messaging__friend__container {
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem .5rem;
+    border-bottom: 1px solid var(--black);
+    cursor: pointer;
+}
+
+.messaging__friend__container:hover {
+    background: var(--second-color);
+}
+
+.friend__name {
+    font-size: var(--friend-name-size);
+    color: var(--grey);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.search__friend__section {
+    width: 90%;
+    max-width: 40rem;
+    align-self: flex-end;
+    margin-right: 1rem;
+}
+
+.search__friend__container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    border: 1px solid var(--black);
+    padding: .7rem 1rem;
+    border-radius: 1rem;
+    background: var(--header-color);
+}
+
+.search__friend__input {
+    font-size: var(--search-here-size);
+    color: var(--black);
+}
+
+.search__friend__input::placeholder {
+    text-transform: capitalize;
+}
+
+.search__friend__button {
+    font-size: var(--search-friend-icon-size);
+    color: var(--black);
+}
+
+.chat__section {
+    display: none;
+}
+
+/* FIXME: Messaging ends */
+
 /* TODO: Media queries start */
 
 @media screen and (min-width: 280px) {
@@ -113,6 +199,14 @@
     }
 
     /* FIXME: Header adjustments end */
+
+    /* TODO: Messaging adjustments */
+
+    .messaging__friend__container {
+        padding: 1.5rem 1rem;
+    }
+
+    /* FIXME: Messaging adjustments end */
     
 }
 
@@ -125,6 +219,35 @@
     }
 
     /* FIXME: Header adjustments end */
+    
+}
+
+@media screen and (min-width: 768px) {
+
+    /* TODO: Messaging adjustments */
+
+    .messaging__main {
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .message__friends__container {
+        border: 1px solid var(--black);
+        width: 60rem;
+        border-radius: 1rem;
+    }
+
+    .messaging__friend__container {
+        padding: 2rem;
+    }
+
+    .search__friend__section {
+        align-self: center;
+        position: relative;
+        right: 9rem;
+    }
+
+    /* FIXME: Messaging adjustments end */
     
 }
 
@@ -229,6 +352,37 @@
     }
 
     /* FIXME: Header adjustments end */
+
+    /* TODO: Messaging adjustments */
+    .friends__chat__container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 3rem;
+    }
+    .messaging__main {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .chat__section {
+        display: block;
+        height: 70vh;
+        border: 1px solid var(--black);
+        border-radius: 1rem;
+        width: 70rem;
+    }
+
+    .message__friends__container {
+        width: 40rem;
+    }
+
+    .search__friend__section {
+        right: 0;
+        left: -36rem;
+    }
+
+    /* FIXME: Messaging adjustments end */
     
 }
 

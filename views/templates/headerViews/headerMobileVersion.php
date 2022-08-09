@@ -1,11 +1,11 @@
 <?php
 
-$userImagePath = "images/user.png";
+session_start();
 
 ?>
 
 <figure class="header__mobile__figure header__figure ">
-    <img src="<?= $userImagePath ?>" alt="" class="header__mobile__image">
+    <img src="<?= $_SESSION["userImagePath"] ?>" alt="" class="header__mobile__image">
 </figure>
 
 <form action="" method="GET" class="search__here__mobile__container search__here__container">
