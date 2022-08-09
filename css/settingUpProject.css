@@ -26,10 +26,11 @@ html {
 
 body {
     overflow-y: auto;
+    background: var(--second-color);
 }
 
 :root {
-    --main-color:#fdfdfd;
+    --main-color:#ffffff;
     --second-color: #eee;
     --third-color:#FF98AD;
     --button-color: dodgerblue;
@@ -40,6 +41,7 @@ body {
     --grey: #444;
     --button-size: 1.4rem;
     --main-transition: all .2s linear;
+    --header-color: rgb(179, 199, 219);
 }
 
 p {

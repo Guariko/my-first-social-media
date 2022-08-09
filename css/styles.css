@@ -1,0 +1,235 @@
+@import url("settingUpProject.css");
+
+/* TODO: Variables start */
+
+:root {
+    --header-height: 5.5rem;
+    --search-here-size: 1rem;
+    --search-here-icon-size: 1rem;
+    --mobile-message-icon-size: 1.8rem;
+}
+
+/* FIXME: Variables end */
+
+/* TODO: Header starts */
+
+.header {
+    padding: 0 .5rem;
+    background: var(--main-color);
+    height: var(--header-height);
+    border-bottom: 1px solid var(--transparent);
+}
+
+.header__mobile__version,
+.search__here__container {
+    display: flex;
+}
+
+.header__mobile__version {
+    align-items: center;
+    gap: 1rem;
+}
+
+.header__mobile__figure {
+    padding: 0 .5rem;
+}
+
+.redirect__message__mobile,
+.header__mobile__image {
+    cursor: pointer;
+}
+
+.header__mobile__image {
+    width: 2.5rem;
+    aspect-ratio: 1;
+    border-radius: 100%;
+}
+
+.search__here__container {
+    gap: .4rem;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    background: var(--header-color);
+    flex-grow: 1;
+    padding: .6rem;
+    border-radius: 4px;
+}
+
+.search__here {
+    width: 100%;
+    font-size: var(--search-here-size);
+}
+
+.search__here__container i,
+.search__here {
+    color: var(--black);
+}
+
+.search__here__container i {
+    font-size: var(--search-here-icon-size);
+    cursor: pointer;
+}
+
+.search__here::placeholder {
+    text-transform: capitalize;
+}
+
+.redirect__message__mobile__container {
+    padding: 0 .5rem;
+}
+
+.redirect__message__mobile {
+    font-size: var(--mobile-message-icon-size);
+    color: var(--grey);
+}
+
+/* FIXME: Header ends */
+
+/* TODO: Media queries start */
+
+@media screen and (min-width: 280px) {
+
+    /* TODO: Variables adjustments */
+    
+    :root {
+        --search-here-size: 1.2rem;
+        --search-here-icon-size: 1.5rem;
+         --mobile-message-icon-size: 2rem;
+    }
+    
+
+    /* FIXME: Variables adjustments end */
+
+    /* TODO: Header adjsutments */
+
+    .header__mobile__image {
+        width: 3rem;
+    }
+
+    .search__here__container {
+        padding: .6rem 1rem;
+        gap: .6rem;
+    }
+
+    /* FIXME: Header adjustments end */
+    
+}
+
+@media screen and (min-width: 400px) {
+
+    /* TODO: Header adjustments */
+
+    .header {
+        padding: 0 1rem;
+    }
+
+    /* FIXME: Header adjustments end */
+    
+}
+
+@media screen and (min-width: 1280px) {
+
+    /* TODO: Variables adjustments */
+
+    :root {
+        --header-height: 7rem;
+        --search-here-size: 1.5rem;
+        --search-here-icon-size: 2rem;
+    }
+
+    /* FIXME: Variables adjustments end */
+
+    /* TODO: Header adjustments */
+
+    .header {
+        padding: 0 3rem;
+    }
+    
+    .header__nav__bar__item__container,
+    .header__nav__bar,
+    .header__logo__search__desktop__container,
+    .header__desktop__version {
+        display: flex;
+    }
+
+    .header__desktop__version {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .user__image__desktop {
+        width: 4.5rem;
+        aspect-ratio: 1;
+        border-radius: 100%;
+        cursor: pointer;
+    }
+
+    .header__logo__search__desktop__container {
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .header__logo__desktop__container i {
+        font-size: 2.5rem;
+        padding: 0 1rem;
+        line-height: 4rem;
+        border-radius: 5px;
+        color: var(--main-color);
+        background: dodgerblue;
+    }
+
+    .search__here__container {
+        padding: 0 2rem;
+        width: 40rem;
+        gap: 1rem;
+    }
+    
+    .search__here__container,
+    .header__logo__desktop__container i {
+        height: 4rem;
+    }
+    
+    .header__nav__bar {
+        gap: 3rem;
+        align-items: center;
+    }
+
+    .header__nav__bar__item__container {
+        flex-direction: column;
+        align-items: center;
+        gap: .4rem;
+    }
+
+    .header__nav__bar__item__container i {
+        font-size: 2.5rem;
+        color: var(--black);
+        cursor: pointer;
+    }
+
+    .header__nav__bar__item {
+        font-size: 1.5rem;
+        color: var(--black);
+        text-transform: capitalize;
+    }
+
+    .header__user__logo__desktop {
+        margin-left: 3rem;
+    }
+
+    .header__nav__bar__decoration {
+        width: 8rem;
+        height: 2px;
+        background: var(--black);
+        visibility: hidden;
+    }
+
+    .header__nav__bar__decoration.active {
+        visibility: visible;
+    }
+
+    /* FIXME: Header adjustments end */
+    
+}
+
+/* FIXME: Media queries end */
