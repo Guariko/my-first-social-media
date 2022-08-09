@@ -30,9 +30,24 @@ const loginRegisterForm = document.querySelector(".login__register__form");
 loginRegisterForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const userName = document.querySelector(
-    ".login__register__inputs__container input[name='name']"
+  const buttonType = document.querySelector(
+    ".login__register__button__container .button"
   );
+
+  let signUp = false;
+
+  if (buttonType.innerHTML.toLowerCase() === "sign up") {
+    signUp = true;
+  }
+
+  let userName = null;
+
+  if (signUp) {
+    userName = document.querySelector(
+      ".login__register__inputs__container input[name='name']"
+    );
+  }
+
   const userEmail = document.querySelector(
     ".login__register__inputs__container input[name='email']"
   );
@@ -40,14 +55,19 @@ loginRegisterForm.addEventListener("submit", (e) => {
     ".login__register__inputs__container input[name='password']"
   );
 
-  const userData =
-    "name=" +
-    userName.value +
-    "&email=" +
-    userEmail.value +
-    "&password=" +
-    userPassword.value +
-    "&signUp=";
+  let userData =
+    "email=" + userEmail.value + "&password=" + userPassword.value + "&signIn=";
+
+  if (signUp) {
+    userData =
+      "name=" +
+      userName.value +
+      "&email=" +
+      userEmail.value +
+      "&password=" +
+      userPassword.value +
+      "&signUp=";
+  }
 
   const xmlhttp = new XMLHttpRequest();
 
@@ -102,7 +122,11 @@ loginRegisterForm.addEventListener("submit", (e) => {
     }
   };
 
-  xmlhttp.open("POST", "register.php", true);
+  if (signUp) {
+    xmlhttp.open("POST", "register.php", true);
+  } else {
+    xmlhttp.open("POST", "login.php", true);
+  }
 
   xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 

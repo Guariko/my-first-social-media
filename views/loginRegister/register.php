@@ -1,5 +1,10 @@
 <?php
 
+session_start();
+
+if (isset($_SESSION["userLogged"])) {
+    header("location: ../../index.php");
+}
 
 $dataBaseConnectionPath = "../../configs/database/databaseConnection.php";
 require_once("../../configs/controllers/databaseClassesController.php");
@@ -12,6 +17,8 @@ $normalizeCss = "../../css/normalize.css";
 $styles = "../../css/loginRegister.css";
 
 include("../templates/headFoot/head.php");
+
+$logInPath = "login.php";
 
 /* FIXME: Head ends */
 
@@ -62,7 +69,7 @@ include("../templates/headFoot/head.php");
             </form>
 
             <div class="login__register__anchor__container">
-                <p class="login__register__anchor__paragraph"> Already have an account? <a href="#" class="login__register__anchor">sign in</a> </p>
+                <p class="login__register__anchor__paragraph"> Already have an account? <a href="<?= $logInPath ?>" class="login__register__anchor">sign in</a> </p>
             </div>
         </article>
 

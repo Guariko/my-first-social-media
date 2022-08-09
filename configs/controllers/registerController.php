@@ -37,31 +37,31 @@ if (isset($_POST["signUp"])) {
 
     if (strlen($userName) < $nameMinLength) {
         $displayNameError = "active";
-        $nameErrorMessage = "Your nickname must have at least 4 characters";
+        $nameErrorMessage = "Your nickname must have at least 4 characters.";
         $error = true;
     }
 
     if (strlen($userName) > $nameMaxLength) {
         $displayNameError = "active";
-        $nameErrorMessage = "Your nickname cannot have more than 50 characters";
+        $nameErrorMessage = "Your nickname cannot have more than 50 characters.";
         $error = true;
     }
 
     if (!$userEmail) {
         $displayEmailError = "active";
-        $emailErrorMessage = "Please, enter a valid email";
+        $emailErrorMessage = "Please, enter a valid email.";
         $error = true;
     }
 
     if (strlen($userPassword) < $passwordMinLength) {
         $displayPasswordError = "active";
-        $passwordErrorMessage = "Your password must have at least 8 characters";
+        $passwordErrorMessage = "Your password must have at least 8 characters.";
         $error = true;
     }
 
     if (strlen($userPassword) > $passwordMaxLength) {
         $displayPasswordError = "active";
-        $passwordErrorMessage = "Your password cannot have more than 100 characters";
+        $passwordErrorMessage = "Your password cannot have more than 100 characters.";
         $error = true;
     }
 
@@ -70,7 +70,13 @@ if (isset($_POST["signUp"])) {
     }
 
     if (!$displayEmailError) {
-        $emailValue = $userEmail;
+        if (DataBase::emailExists($userEmail)) {
+            $error = true;
+            $displayEmailError = "active";
+            $emailErrorMessage = "This email already exists.";
+        } else {
+            $emailValue = $userEmail;
+        }
     }
 
     if (!$displayPasswordError) {
@@ -82,8 +88,8 @@ if (isset($_POST["signUp"])) {
         $userData["name"] = $userName;
         $userData["email"] = $userEmail;
         $userData["password"] = $userPassword;
-        $redirectValue = "login.php";
 
         DataBase::createUser($userData);
+        $redirectValue = "login.php";
     }
 }

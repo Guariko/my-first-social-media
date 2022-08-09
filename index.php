@@ -1,5 +1,13 @@
 <?php
 
+session_start();
+
+if (!isset($_SESSION["userLogged"])) {
+    header("location: views/loginRegister/login.php");
+    die();
+}
+
+
 /* TODO: Database connection */
 
 $dataBaseConnectionPath = "configs/database/databaseConnection.php";
