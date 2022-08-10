@@ -5,6 +5,8 @@ const desktopWidth = 1280;
 const isHome = document.querySelector(".home__main");
 const isMessaging = document.querySelector(".messaging__main");
 
+const classToDisplayElement = "active";
+
 /* FIXME: Setting up the project ends */
 
 /* TODO: Header starts */

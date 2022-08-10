@@ -2,7 +2,7 @@
 
 foreach ($usersData as $userData) : ?>
 
-    <div class="messaging__friend__container">
+    <div class="messaging__friend__container" data-friendid="<?= $userData["id"] ?>">
 
         <figure class="friend__image__container">
             <img src="<?= $friendImagePath ?>" alt="" class="friend__image">

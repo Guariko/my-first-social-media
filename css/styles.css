@@ -1,4 +1,6 @@
 @import url("settingUpProject.css");
+@import url('https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&display=optional');
+
 
 /* TODO: Variables start */
 
@@ -9,6 +11,11 @@
     --mobile-message-icon-size: 1.8rem;
     --friend-name-size: 1.5rem;
     --search-friend-icon-size: 1.7rem;
+    --chat-friend-name-size: 1.3rem;
+    --back-friend-message-size: 1.5rem;
+    --user-message-size: 1.2rem;
+    --send-message-size: 2rem;
+    --message-size: 1.2rem;
 }
 
 /* FIXME: Variables end */
@@ -20,6 +27,11 @@
     background: var(--main-color);
     height: var(--header-height);
     border-bottom: 1px solid var(--transparent);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
 }
 
 .header__mobile__version,
@@ -91,10 +103,11 @@
 /* TODO: Messaging start */
 
 .messaging__main {
-    margin-top: 3rem;
+    margin-top: var(--header-height);
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    padding-top: 3rem;
 }
 
 .messaging__friend__container,
@@ -168,7 +181,122 @@
 
 .chat__section {
     display: none;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    top: 0;
+    z-index: 110;
+    background: var(--main-color);
 }
+
+.send__message__container,
+.chat__friend__container,
+.chat__section.active {
+    display: flex;
+}
+
+.chat__section.active {
+    flex-direction: column;
+}
+
+.chat__friend__image {
+    aspect-ratio: 1;
+    width: 3rem;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.chat__friend__container {
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--transparent);
+    box-shadow: 0 0 10px 5px var(--transparent);
+    height: 8rem;
+}
+
+.send__message__container {
+    height: 9rem;
+}
+
+.friend__chat__name {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: var(--chat-friend-name-size);
+    color: var(--grey);
+}
+
+.send__message__container i,
+.chat__friend__container i {
+    cursor: pointer;
+}
+
+.chat__friend__container i {
+    font-size: var(--back-friend-message-size);
+    color: var(--black);
+}
+
+.send__message__container {
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--transparent);
+    padding-right: 1rem;
+}
+
+.user__message__input {
+    width: 90%;
+    height: 4rem;
+    overflow-y: auto;
+    font-size: var(--user-message-size);
+    font-weight: 500;
+    color: var(--grey);
+    resize: none;
+    padding: 1rem;
+}
+
+.user__message__input::placeholder {
+    text-transform: capitalize;
+}
+
+.send__message__container i {
+    font-size: var(--send-message-size);
+    color: var(--black);
+}
+
+.user__message {
+    align-self: flex-end;
+    background: dodgerblue;
+    color: var(--main-color);
+}
+
+.chat__container {
+    height: 100vh;
+    overflow-y: auto;
+    background: #f6f7fb;
+}
+
+.chat {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem .5rem;
+    gap: .2rem;
+}
+
+.message {
+    padding: .6rem 1.2rem;
+    font-size: var(--message-size);
+    border-radius: 1rem;
+    max-width: 80%;
+    font-family: "Cousine", monospace;
+}
+
+.friend__message {
+    align-self: flex-start;
+    background: rgb(21, 175, 98);
+    color: var(--main-color);
+}
+
 
 /* FIXME: Messaging ends */
 
@@ -181,9 +309,11 @@
     :root {
         --search-here-size: 1.2rem;
         --search-here-icon-size: 1.5rem;
-         --mobile-message-icon-size: 2rem;
+        --mobile-message-icon-size: 2rem;
+        --user-message-size: 1.4rem;
+        --send-message-size: 2.2rem;
+        --message-size: 1.4rem;
     }
-    
 
     /* FIXME: Variables adjustments end */
 
@@ -206,8 +336,24 @@
         padding: 1.5rem 1rem;
     }
 
+    .chat {
+        padding: 2rem 1rem;
+    }
+
     /* FIXME: Messaging adjustments end */
     
+}
+
+@media screen and (min-width: 350px) {
+
+    /* TODO: Messaging adjustments */
+
+    .send__message__container {
+        padding: 1rem 2rem;
+    }
+
+    /* FIXME: Messaging adjsutments end */
+
 }
 
 @media screen and (min-width: 400px) {
@@ -223,6 +369,16 @@
 }
 
 @media screen and (min-width: 768px) {
+
+     /* TODO: Variables adjustments */
+    
+     :root {
+        --user-message-size: 1.7rem;
+        --send-message-size: 2.4rem;
+        --message-size: 1.7rem;
+    }
+    
+    /* FIXME: Variables adjustments end */
 
     /* TODO: Messaging adjustments */
 
@@ -245,6 +401,10 @@
         align-self: center;
         position: relative;
         right: 9rem;
+    }
+
+    .chat {
+        padding: 2rem;
     }
 
     /* FIXME: Messaging adjustments end */
@@ -354,12 +514,24 @@
     /* FIXME: Header adjustments end */
 
     /* TODO: Messaging adjustments */
+
+    .message__firends__first__container {
+        height: 48rem;
+        overflow-y: auto;
+    }
+
+    .message__friends__container {
+        border: 1px solid var(--black);
+        border-radius: 1rem;
+    }
+
     .friends__chat__container {
         display: flex;
         align-items: flex-start;
         justify-content: flex-start;
         gap: 3rem;
     }
+
     .messaging__main {
         margin-left: 5%;
         margin-right: 5%;
@@ -371,6 +543,7 @@
         border: 1px solid var(--black);
         border-radius: 1rem;
         width: 70rem;
+        position: initial;
     }
 
     .message__friends__container {
@@ -380,6 +553,27 @@
     .search__friend__section {
         right: 0;
         left: -36rem;
+    }  
+
+    .start__conversation {
+        color: rgb(59, 153, 248);
+        font-size: 2rem;
+        font-weight: 500;
+        width: 100%;
+        text-align: center;
+        max-width: initial;
+    }
+
+    .chat {
+        padding: 2rem 1rem;
+    }
+
+    .chat__friend__container {
+        padding: 1rem 1.5rem;
+    }
+
+    .chat__friend__container .fa-angle-left {
+        display: none;
     }
 
     /* FIXME: Messaging adjustments end */

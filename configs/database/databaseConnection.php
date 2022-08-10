@@ -109,6 +109,30 @@ class DataBaseClass
 
         return $smt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function sendMessage($messageData)
+    {
+
+        $sql = "INSERT INTO messages (from_user, to_user, message, datetime) VALUES(:from_user, :to_user, :message, now())";
+        $smt = $this->dataBaseConnection->prepare($sql);
+        $smt->execute([
+            ":from_user" => $messageData["from"],
+            ":to_user" => $messageData["to"],
+            ":message" => $messageData["userMessage"]
+        ]);
+    }
+
+    public function getChatData($usersData)
+    {
+        $sql = "SELECT * FROM messages WHERE (from_user LIKE :userId OR from_user LIKE :friendId) AND (to_user LIKE :friendId OR to_user LIKE :userId)";
+        $smt = $this->dataBaseConnection->prepare($sql);
+        $smt->execute([
+            ":userId" => $usersData["userId"],
+            ":friendId" => $usersData["friendId"],
+        ]);
+
+        return $smt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 class DataBase
@@ -144,5 +168,15 @@ class DataBase
     static public function getAllUsersData($userId)
     {
         return self::$dataBaseConnection->getAllUsersData($userId);
+    }
+
+    static public function sendMessage($messageData)
+    {
+        return self::$dataBaseConnection->sendMessage($messageData);
+    }
+
+    static public function getChatData($usersData)
+    {
+        return self::$dataBaseConnection->getChatData($usersData);
     }
 }

@@ -41,37 +41,55 @@ include("templates/header.php");
 
     <section class="friends__chat__container">
 
-        <section class="message__friends__container">
+        <div class="message__firends__first__container">
 
-            <?php
+            <section class="message__friends__container">
 
-            $friendImagePath = "../images/user.png";
+                <?php
 
-            include("messagingView/messageFriends.php");
+                $friendImagePath = "../images/user.png";
 
-            ?>
+                include("messagingViews/messageFriends.php");
 
-        </section>
+                ?>
+
+            </section>
+        </div>
+
 
         <section class="chat__section">
 
+            <div class="chat__friend__container">
+
+                <p class="start__conversation">Start a conversation.</p>
+
+            </div>
+
+            <article class="chat__container">
+
+                <div class="chat"></div>
+
+            </article>
+
             <form action="" class="send__message__container" method="POST">
 
-                <input type="text" name="user__message">
-                <i class="fa-solid fa-paper-plane"></i>
+                <textarea name="" id="" cols="30" rows="10" class="user__message__input" placeholder="write a message"></textarea>
+
+
+                <button type="submit">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
 
             </form>
 
         </section>
     </section>
 
-
-
-
 </main>
 
 <?php
 
 $scripts = "../js/index.js";
+$subScripts = "../js/messaging.js";
 
 include("templates/headFoot/foot.php");
