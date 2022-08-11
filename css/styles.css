@@ -16,6 +16,8 @@
     --user-message-size: 1.2rem;
     --send-message-size: 2rem;
     --message-size: 1.2rem;
+    --buttons-size: 1.2rem;
+    --user-name-size: 1.2rem;
 }
 
 /* FIXME: Variables end */
@@ -102,12 +104,15 @@
 
 /* TODO: Messaging start */
 
-.messaging__main {
+.main {
     margin-top: var(--header-height);
+    padding-top: 3rem;
+}
+
+.messaging__main {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding-top: 3rem;
 }
 
 .messaging__friend__container,
@@ -297,8 +302,82 @@
     color: var(--main-color);
 }
 
-
 /* FIXME: Messaging ends */
+
+/* TODO: User profile starts */
+
+.user__image__input,
+.start__post__container {
+    display: none;
+}
+
+.user__profile__buttons__container,
+.user__informations__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.user__profile__buttons__container {
+    width: fit-content;
+    gap: .5rem;
+}
+
+.user__profile__buttons__container .button {
+    text-align: center;
+}
+
+.user__informations__container {
+    gap: 2rem;
+    align-items: center;
+}
+
+.button {
+    padding: .8rem 1.5rem;
+    display: inline-block;
+    font-size: var(--buttons-size);
+    font-weight: 500;
+    border: 1px solid var(--transparent);
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: capitalize;
+    background: var(--third-color);
+    color: var(--main-color);
+}
+
+.button:hover {
+    filter: grayscale(30%);
+}
+
+.user__name,
+.post__button {
+    background: dodgerblue;
+}
+
+.choose__image__button {
+    background: rgb(88, 148, 88);
+}
+
+.current__user__image {
+    width: 10rem;
+    aspect-ratio: 1;
+    border-radius: 100%;
+}
+
+.select__user__image__form .button {
+    width: 100%;
+}
+
+.user__name {
+    font-size: var(--user-name-size);
+    color: var(--main-color);
+    text-align: center;
+    padding: .7rem 1.2rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+/* FIXME: User profile ends */
 
 /* TODO: Media queries start */
 
@@ -346,6 +425,15 @@
 
 @media screen and (min-width: 350px) {
 
+    /* TODO: Variables adjustments */
+
+    :root {
+        --buttons-size: 1.5rem;
+        --user-name-size: 1.4rem;
+    }
+
+    /* FIXME: Variables adjustments end */
+
     /* TODO: Messaging adjustments */
 
     .send__message__container {
@@ -365,6 +453,59 @@
     }
 
     /* FIXME: Header adjustments end */
+    
+}
+
+@media screen and (min-width: 600px) {
+
+    /* TODO: User profile adjsutments */
+
+    .user__informations__container {
+        gap: 0;
+        align-items: flex-start;
+        border-radius: 1rem;
+        border: 1px solid var(--transparent);
+        margin-right: 2rem;
+        margin-left: 2rem;
+        background: rgb(30,144,255);
+        background: linear-gradient(356deg, rgba(30,144,255,1) 0%, rgba(255,255,255,1) 100%);
+        width: 60rem;
+    }
+
+    .user__profile__buttons__container {
+        flex-direction: row;
+        justify-content: center;
+        padding: 2rem 1rem;
+        width: 100%;
+    }
+
+    .user__profile__buttons__container .button {
+        padding: 0;
+        width: 15rem;
+        height: 3.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 1rem;
+    }
+
+    .user__informations {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .user__name {
+        margin-top: 0;
+    }
+
+    .user__profile__container {
+        display: flex;
+        justify-content: center;
+    }
+
+    /* FIXME: User profile adjsutments end * */
     
 }
 

@@ -47,9 +47,11 @@ session_start();
         </li>
 
         <li class="header__nav__bar__item__container header__user__logo__desktop ">
-            <figure>
-                <img src="<?= $_SESSION["userImagePath"] ?>" alt="" class="user__image__desktop">
-            </figure>
+            <a href="<?= $_SESSION["userProfilePath"] ?>">
+                <figure>
+                    <img src="<?= $_SESSION["userImagePath"] ?>" alt="" class="user__image__desktop">
+                </figure>
+            </a>
         </li>
     </ul>
 </nav>

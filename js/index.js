@@ -4,6 +4,7 @@ const desktopWidth = 1280;
 
 const isHome = document.querySelector(".home__main");
 const isMessaging = document.querySelector(".messaging__main");
+const isUserProfile = document.querySelector(".user__profile__main");
 
 const classToDisplayElement = "active";
 
@@ -21,6 +22,8 @@ let headerViewPath;
 if (isHome) {
   headerViewPath = "views/templates/headerViews/";
 } else if (isMessaging) {
+  headerViewPath = "templates/headerViews/";
+} else if (isUserProfile) {
   headerViewPath = "templates/headerViews/";
 }
 

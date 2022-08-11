@@ -23,6 +23,8 @@ include("templates/headFoot/head.php");
 $_SESSION["homePath"] = "../index.php";
 $_SESSION["messagingPath"] = "messaging.php";
 $_SESSION["userImagePath"] = "../images/user.png";
+$_SESSION["userProfilePath"] = "userProfile.php";
+
 
 include("templates/header.php");
 

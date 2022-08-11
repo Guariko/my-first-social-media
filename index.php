@@ -28,6 +28,7 @@ include("views/templates/headFoot/head.php");
 $_SESSION["homePath"] = "index.php";
 $_SESSION["messagingPath"] = "views/messaging.php";
 $_SESSION["userImagePath"] = "images/user.png";
+$_SESSION["userProfilePath"] = "views/userProfile.php";
 
 include("views/templates/header.php");
 
