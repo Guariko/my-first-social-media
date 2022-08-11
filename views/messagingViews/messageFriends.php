@@ -1,5 +1,26 @@
 <?php
 
+if (isset($_GET["sortFriends"])) {
+
+    session_start();
+
+    $friendNameMinLength = 1;
+
+    $dataBaseConnectionPath = "../../configs/database/databaseConnection.php";
+    require_once("../../configs/controllers/databaseClassesController.php");
+
+    $friendName = strip_tags($_GET["friendName"]);
+
+    $friendImagePath = "../images/user.png";
+
+    if (strlen($friendName) < $friendNameMinLength) {
+        $usersData = DataBase::getAllUsersData($_SESSION["userData"]["id"]);
+    } else {
+
+        $usersData = DataBase::sortFriends($_GET["friendName"], $_SESSION["userData"]["id"]);
+    }
+}
+
 foreach ($usersData as $userData) : ?>
 
     <div class="messaging__friend__container" data-friendid="<?= $userData["id"] ?>">

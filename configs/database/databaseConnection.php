@@ -133,6 +133,18 @@ class DataBaseClass
 
         return $smt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function sortFriends($friendName, $userId)
+    {
+        $sql = "SELECT * FROM users WHERE name REGEXP (:name) AND id != :userId";
+        $smt = $this->dataBaseConnection->prepare($sql);
+        $smt->execute([
+            ":name" => $friendName,
+            "userId" => $userId,
+        ]);
+
+        return $smt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 class DataBase
@@ -178,5 +190,10 @@ class DataBase
     static public function getChatData($usersData)
     {
         return self::$dataBaseConnection->getChatData($usersData);
+    }
+
+    static public function sortFriends($friendName, $userId)
+    {
+        return self::$dataBaseConnection->sortFriends($friendName, $userId);
     }
 }
