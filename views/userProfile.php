@@ -11,7 +11,6 @@ if (!isset($_SESSION["userLogged"])) {
 $dataBaseConnectionPath = "../configs/database/databaseConnection.php";
 require_once("../configs/controllers/databaseClassesController.php");
 
-require_once("../configs/controllers/userProfileController.php");
 
 $styles = "../css/styles.css";
 $normalizeCss = "../css/normalize.css";
@@ -20,8 +19,10 @@ include("templates/headFoot/head.php");
 
 $_SESSION["homePath"] = "../index.php";
 $_SESSION["messagingPath"] = "messaging.php";
-$_SESSION["userImagePath"] = "../images/user.png";
+$_SESSION["userImagePath"] = "../images/" . $_SESSION["userData"]["user_image"];
 $_SESSION["userProfilePath"] = "userProfile.php";
+
+$logOutPath = "../configs/controllers/logOutController.php";
 
 include("templates/header.php");
 
@@ -56,9 +57,10 @@ include("templates/header.php");
             <div class="user__profile__buttons__container">
 
                 <mark class="post__button button ">start a post</mark>
-                <form action="" class="select__user__image__form">
-                    <input type="file" accept="image/*" class="user__image__input" id="user__image__input">
+                <form action="" class="select__user__image__form" enctype="multipart/form-data" method="POST">
+                    <input type="file" accept="image/*" class="user__image__input" id="user__image__input" name="user__image__data">
                     <label class="choose__image__button button" for="user__image__input">select an image</label>
+
                 </form>
                 <mark class="button"> change password </mark>
 
@@ -73,6 +75,7 @@ include("templates/header.php");
                 <div class="user__name__container">
 
                     <h1 class="user__name"> <?= $_SESSION["userData"]["name"] ?> </h1>
+                    <a href="<?= $logOutPath ?>" class="button log__out ">log out</a>
 
                 </div>
 

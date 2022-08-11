@@ -13,7 +13,7 @@ $emailValue = null;
 $passwordValue = null;
 
 $nameMinLength = 4;
-$nameMaxLength = 50;
+$nameMaxLength = 20;
 
 $passwordMinLength = 8;
 $passwordMaxLength = 100;
@@ -38,7 +38,7 @@ if (isset($_POST["signUp"])) {
 
     if (strlen($userName) > $nameMaxLength) {
         $displayNameError = "active";
-        $nameErrorMessage = "Your nickname cannot have more than 50 characters.";
+        $nameErrorMessage = "Your nickname cannot have more than 20 characters.";
         $error = true;
     }
 

@@ -361,6 +361,7 @@
     width: 10rem;
     aspect-ratio: 1;
     border-radius: 100%;
+    object-fit: cover;
 }
 
 .select__user__image__form .button {
@@ -375,6 +376,10 @@
     border-radius: 1rem;
     margin-top: 1rem;
     font-weight: 500;
+}
+
+.log__out {
+    background: rgb(255, 34, 34);
 }
 
 /* FIXME: User profile ends */

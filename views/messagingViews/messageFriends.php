@@ -11,8 +11,6 @@ if (isset($_GET["sortFriends"])) {
 
     $friendName = strip_tags($_GET["friendName"]);
 
-    $friendImagePath = "../images/user.png";
-
     if (strlen($friendName) < $friendNameMinLength) {
         $usersData = DataBase::getAllUsersData($_SESSION["userData"]["id"]);
     } else {
@@ -26,7 +24,7 @@ foreach ($usersData as $userData) : ?>
     <div class="messaging__friend__container" data-friendid="<?= $userData["id"] ?>">
 
         <figure class="friend__image__container">
-            <img src="<?= $friendImagePath ?>" alt="" class="friend__image">
+            <img src="<?= "../images/" . $userData["user_image"] ?>" alt="" class="friend__image">
         </figure>
 
         <h2 class="friend__name"> <?= $userData["name"] ?> </h2>

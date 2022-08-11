@@ -145,6 +145,17 @@ class DataBaseClass
 
         return $smt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function updateUserImage($userData)
+    {
+        $sql = "UPDATE users SET user_image = :newUserImage WHERE id LIKE :userId";
+        $smt = $this->dataBaseConnection->prepare($sql);
+
+        $smt->execute([
+            ":newUserImage" => $userData["newUserImage"],
+            ":userId" => $userData["userId"],
+        ]);
+    }
 }
 
 class DataBase
@@ -195,5 +206,10 @@ class DataBase
     static public function sortFriends($friendName, $userId)
     {
         return self::$dataBaseConnection->sortFriends($friendName, $userId);
+    }
+
+    static public function updateUserImage($userData)
+    {
+        return self::$dataBaseConnection->updateUserImage($userData);
     }
 }
