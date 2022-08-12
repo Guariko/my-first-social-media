@@ -32,3 +32,74 @@ userImageInput.addEventListener("change", (e) => {
 
   updateUserImageRequest.send(userImageData);
 });
+
+const openChangePasswordContainer = document.querySelector(
+  ".change__password__button"
+);
+
+const closeChangePasswordContainer = document.querySelector(
+  ".change__password__form .fa-times"
+);
+
+const changePasswordContainer = document.querySelector(
+  ".change__password__container"
+);
+
+const changePasswordErrorMessage =
+  changePasswordContainer.querySelector(".error__message");
+
+openChangePasswordContainer.addEventListener("click", (e) => {
+  addClass(changePasswordContainer, classToDisplayElement);
+});
+
+closeChangePasswordContainer.addEventListener("click", (e) => {
+  removeClass(changePasswordContainer, classToDisplayElement);
+});
+
+const changePasswordForm = document.querySelector(".change__password__form");
+
+changePasswordForm.addEventListener("submit", (e) => {
+  let changePasswordRequest = new XMLHttpRequest();
+
+  let changePasswordFormData = new FormData(changePasswordForm);
+
+  changePasswordFormData.append("update__password", "true");
+
+  changePasswordRequest.onreadystatechange = () => {
+    if (
+      changePasswordRequest.status === 200 &&
+      changePasswordRequest.readyState === XMLHttpRequest.DONE
+    ) {
+      changePasswordForm.innerHTML = changePasswordRequest.responseText;
+
+      changePasswordForm.replaceChild(
+        closeChangePasswordContainer,
+        changePasswordForm.querySelector(".fa-times")
+      );
+      closeChangePasswordContainer.onclick = () => {
+        const changePasswordInputs =
+          changePasswordForm.querySelectorAll("input");
+        changePasswordInputs.forEach((changePasswordInput) => {
+          changePasswordInput.value = null;
+        });
+
+        const changePasswordErrors = changePasswordForm.querySelectorAll("p");
+        changePasswordErrors.forEach((error) => {
+          if (error.classList.contains(classToDisplayElement)) {
+            removeClass(error, classToDisplayElement);
+            error.innerHTML = null;
+          }
+        });
+      };
+    }
+  };
+
+  changePasswordRequest.open(
+    "POST",
+    "userProfileViews/updatePassword.php",
+    true
+  );
+  changePasswordRequest.send(changePasswordFormData);
+
+  e.preventDefault();
+});

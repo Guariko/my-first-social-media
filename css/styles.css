@@ -18,6 +18,8 @@
     --message-size: 1.2rem;
     --buttons-size: 1.2rem;
     --user-name-size: 1.2rem;
+    --change-password-input-size: 1.2rem;
+    --error-message-size: 1.1rem;
 }
 
 /* FIXME: Variables end */
@@ -342,6 +344,7 @@
     text-transform: capitalize;
     background: var(--third-color);
     color: var(--main-color);
+    transition: all .2s linear;
 }
 
 .button:hover {
@@ -380,6 +383,106 @@
 
 .log__out {
     background: rgb(255, 34, 34);
+}
+
+.change__password__form,
+.change__password__container.active {
+    display: flex;
+}
+
+.change__password__container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 110;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    display: none;
+}
+
+.change__password__form {
+    background: var(--main-color);
+    flex-direction: column;
+    gap: 2rem;
+    padding: 6rem 1rem;
+    padding-bottom: 4rem;
+    border-radius: 1rem;
+    position: relative;
+    flex-grow: 1;
+    max-width: 40rem;
+    align-items: center;
+}
+
+.change__password__input {
+    padding: 1rem;
+    border: 1px solid var(--transparent);
+    background: dodgerblue;
+    color: var(--main-color);
+    font-size: var(--change-password-input-size);
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 25rem;
+}
+
+.change__password__input::placeholder {
+    color: var(--main-color);
+    text-transform: capitalize;
+}
+
+.change__password__container .button {
+    width: fit-content;
+}
+
+.error__message {
+    color: rgb(218, 47, 47);
+    font-size: var(--error-message-size);
+    display: none;
+}
+
+.error__message.active {
+    display: block;
+}
+
+.change__password__form .fa-times {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    color: var(--black);
+    cursor: pointer;
+    transition: all .2s linear;
+}
+
+.change__password__form .fa-times:hover {
+    color: rgb(218, 47, 47) ;
+}
+
+.change__password__input__container {
+    width: 100%;
+    max-width: 25rem;
+}
+
+.password__updated__container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: -2rem;
+}
+
+.password__updated__container i {
+    font-size: 2.5rem;
+    color: dodgerblue;
+}
+
+.password__updated__message {
+    font-size: 1.2rem;
+    color: dodgerblue;
 }
 
 /* FIXME: User profile ends */
@@ -425,6 +528,15 @@
     }
 
     /* FIXME: Messaging adjustments end */
+
+    /* TODO: User profile adjustments */
+
+    .change__password__form {
+        padding-right: 2rem;
+        padding-left: 2rem;
+    }
+
+    /* FIXME: User profile adjusmtent end */
     
 }
 

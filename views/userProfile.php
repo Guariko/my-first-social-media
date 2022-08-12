@@ -62,7 +62,20 @@ include("templates/header.php");
                     <label class="choose__image__button button" for="user__image__input">select an image</label>
 
                 </form>
-                <mark class="button"> change password </mark>
+                <mark class="button change__password__button "> change password </mark>
+                <div class="change__password__container">
+
+                    <form action="" class="change__password__form" method="POST">
+
+
+                        <?php
+
+                        include("userProfileViews/updatePassword.php");
+
+                        ?>
+
+                    </form>
+                </div>
 
             </div>
 

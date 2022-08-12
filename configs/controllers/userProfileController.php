@@ -1,8 +1,8 @@
 <?php
 
-if (isset($_FILES["user__image__data"])) {
+session_start();
 
-    session_start();
+if (isset($_FILES["user__image__data"])) {
 
     $dataBaseConnectionPath = "../database/databaseConnection.php";
     require_once("databaseClassesController.php");

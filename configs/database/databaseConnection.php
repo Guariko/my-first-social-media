@@ -156,6 +156,16 @@ class DataBaseClass
             ":userId" => $userData["userId"],
         ]);
     }
+
+    public function updateUserPassword($userData)
+    {
+        $sql = "UPDATE users SET password = :newPassword WHERE id LIKE :userId";
+        $smt = $this->dataBaseConnection->prepare($sql);
+        $smt->execute([
+            ":newPassword" => $userData["newPassword"],
+            ":userId" => $userData["userId"],
+        ]);
+    }
 }
 
 class DataBase
@@ -211,5 +221,10 @@ class DataBase
     static public function updateUserImage($userData)
     {
         return self::$dataBaseConnection->updateUserImage($userData);
+    }
+
+    static public function updateUserPassword($userData)
+    {
+        return self::$dataBaseConnection->updateUserPassword($userData);
     }
 }
