@@ -20,6 +20,7 @@
     --user-name-size: 1.2rem;
     --change-password-input-size: 1.2rem;
     --error-message-size: 1.1rem;
+    --post-message-size: 1.2rem;
 }
 
 /* FIXME: Variables end */
@@ -308,8 +309,7 @@
 
 /* TODO: User profile starts */
 
-.user__image__input,
-.start__post__container {
+.user__image__input {
     display: none;
 }
 
@@ -485,6 +485,90 @@
     color: dodgerblue;
 }
 
+.start__post__container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 110;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    overflow: auto;
+}
+
+.start__post__container.active {
+    display: flex;
+}
+
+.start__post__form {
+    width: 100%;
+    max-width: 50rem;
+    border: 1px solid var(--transparent);
+    background: var(--main-color);
+    border-radius: 1rem;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    overflow: auto;
+}
+
+#post__image {
+    display: none;
+}
+
+.post__message {
+    color: var(--black);
+    font-size: var(--post-message-size);
+    resize: none;
+    height: 7rem;
+    width: 100%;
+    padding: 1rem;
+}
+
+.post__image__buttons {
+    background: dodgerblue;
+}
+
+.post__buttons__container {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    align-self: center;
+}
+
+.post__image__container {
+    border: 1px solid var(--black);
+    aspect-ratio: 1;
+    width: 100%;
+    max-height: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.post__image {
+    object-fit: cover;
+    width: auto;
+    max-height: 30rem;
+    max-width: 100%;
+}
+
+.start__post__form .fa-times {
+    align-self: flex-end;
+    color: rgb(216, 81, 81);
+    font-size: 3rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    margin-bottom: -2rem;
+}
+
 /* FIXME: User profile ends */
 
 /* TODO: Media queries start */
@@ -500,6 +584,7 @@
         --user-message-size: 1.4rem;
         --send-message-size: 2.2rem;
         --message-size: 1.4rem;
+        --post-message-size: 1.4rem;
     }
 
     /* FIXME: Variables adjustments end */
@@ -536,6 +621,16 @@
         padding-left: 2rem;
     }
 
+    .post__buttons__container {
+        flex-direction: row;
+        gap: .5rem;
+        align-self: flex-end;
+    }
+
+    .start__post__form .submit__post__button {
+        max-width: 10rem;
+    }
+
     /* FIXME: User profile adjusmtent end */
     
 }
@@ -570,6 +665,22 @@
     }
 
     /* FIXME: Header adjustments end */
+    
+}
+
+@media screen and (min-width: 500px) {
+
+    /* TODO: User profile adjustments */
+
+    .start__post__form {
+        padding: 2rem;
+    }
+
+    .start__post__container {
+        padding: 0 2rem;
+    }
+
+    /* FIXME: User profile adjustments end */
     
 }
 

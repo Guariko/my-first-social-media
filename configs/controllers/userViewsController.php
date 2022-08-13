@@ -59,3 +59,89 @@ if (isset($_POST["update__password"])) {
         $passwordUpdated = true;
     }
 }
+
+if (isset($_POST["displayPostImage"])) {
+
+    session_start();
+
+    $postImageName = $_FILES["post__image"]["name"];
+    $postImageSize = $_FILES["post__image"]["size"];
+    $postImageError = $_FILES["post__image"]["error"];
+    $postImageTmpName = $_FILES["post__image"]["tmp_name"];
+
+    $noError = 0;
+    $minPostImageSize = 120000;
+    $error = "error";
+
+    if ($postImageError === $noError) {
+
+        if ($postImageSize <= $minPostImageSize) {
+
+            $allowExtensions = ["png", "jpg", "jpeg"];
+            $postImageExtension = strtolower(pathinfo($postImageName, PATHINFO_EXTENSION));
+
+            if (in_array($postImageExtension, $allowExtensions)) {
+                $newPostImageName = uniqid("IMG-", true) . "." . $postImageExtension;
+                $postImagePath = "../../images/postImages/" . $newPostImageName;
+
+                move_uploaded_file($postImageTmpName, $postImagePath);
+                $_SESSION["post_image"] = $newPostImageName;
+                echo $newPostImageName;
+            } else {
+                echo $error;
+            }
+        } else {
+            echo $error;
+        }
+    } else {
+        echo $error;
+    }
+}
+
+if (isset($_POST["startPost"])) {
+
+    session_start();
+
+    $dataBaseConnectionPath = "../database/databaseConnection.php";
+    require_once("databaseClassesController.php");
+
+    if (isset($_SESSION["post_image"])) {
+        $postData["post_image"] = $_SESSION["post_image"];
+    } else {
+        $postData["post_image"] = false;
+    }
+
+    $postMessageMinLength = 1;
+    $postMessageMaxLength = 3000;
+
+    $error = false;
+
+    $postMessage =  strip_tags($_POST["post__content"]);
+
+    if (strlen($postMessage) < $postMessageMinLength ||  strlen($postMessage) > $postMessageMaxLength) {
+        $error = true;
+    }
+
+    if (!$error) {
+        $postData["message"] = $postMessage;
+        $postData["user_id"] = $_SESSION["userData"]["id"];
+
+        DataBase::startPost($postData);
+        echo "success";
+        unset($_SESSION["post_image"]);
+    } else {
+        echo "error";
+    }
+}
+
+if (isset($_POST["unsetPostImage"])) {
+    session_start();
+
+    if (isset($_SESSION["post_image"])) {
+        unlink("../../images/postImages/" . $_SESSION["post_image"]);
+        unset($_SESSION["post_image"]);
+        echo "Hello world";
+    } else {
+        echo "testing";
+    }
+}

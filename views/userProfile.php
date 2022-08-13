@@ -32,41 +32,39 @@ include("templates/header.php");
 
     <section class="user__profile__container">
 
-        <div class="start__post__container">
-
-            <div class="port__container">
-
-                <form action="" method="POST" class="post__form">
-
-                    <textarea name="" id="" cols="30" rows="10" class="user__description" placeholder="Your message"></textarea>
-
-                    <button type="submit" class="post__button button">done</button>
-                    <button type="button" class="choose__image__button button ">choose an image</button>
-                </form>
-
-                <picture class="image__selected__container">
-                    <img src="" alt="" class="image__selected">
-                </picture>
-
-            </div>
-
-        </div>
-
         <div class="user__informations__container">
 
             <div class="user__profile__buttons__container">
 
                 <mark class="post__button button ">start a post</mark>
+
+                <div class="start__post__container">
+                    <form action="" method="POST" class="start__post__form" enctype="multipart/form-data">
+                        <i class="fas fa-times"></i>
+                        <textarea name="post__content" cols="30" rows="10" placeholder="Your message" class="post__message"></textarea>
+
+                        <div class="post__buttons__container">
+                            <input type="file" name="post__image" accept="image/*" id="post__image">
+                            <label for="post__image" class="post__image__buttons button ">select an image</label>
+                            <button class="button submit__post__button" type="submit">post</button>
+                        </div>
+
+                        <div class="post__image__container">
+                            <img src="<?= "../images/user.png" ?>" alt="" class="post__image">
+                        </div>
+                    </form>
+                </div>
+
                 <form action="" class="select__user__image__form" enctype="multipart/form-data" method="POST">
                     <input type="file" accept="image/*" class="user__image__input" id="user__image__input" name="user__image__data">
                     <label class="choose__image__button button" for="user__image__input">select an image</label>
 
                 </form>
+
                 <mark class="button change__password__button "> change password </mark>
                 <div class="change__password__container">
 
                     <form action="" class="change__password__form" method="POST">
-
 
                         <?php
 

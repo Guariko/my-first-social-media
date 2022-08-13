@@ -166,6 +166,26 @@ class DataBaseClass
             ":userId" => $userData["userId"],
         ]);
     }
+
+    public function startPost($postData)
+    {
+        if ($postData["post_image"]) {
+            $sql = "INSERT INTO posts(message, post_image, datetime, user_id) VALUES (:message, :post_image, now(), :user_id)";
+            $smt = $this->dataBaseConnection->prepare($sql);
+            $smt->execute([
+                ":message" => $postData["message"],
+                ":post_image" => $postData["post_image"],
+                ":user_id" => $postData["user_id"],
+            ]);
+        } else {
+            $sql = "INSERT INTO posts(message, datetime, user_id) VALUES (:message, now(), :user_id)";
+            $smt = $this->dataBaseConnection->prepare($sql);
+            $smt->execute([
+                ":message" => $postData["message"],
+                ":user_id" => $postData["user_id"],
+            ]);
+        }
+    }
 }
 
 class DataBase
@@ -226,5 +246,10 @@ class DataBase
     static public function updateUserPassword($userData)
     {
         return self::$dataBaseConnection->updateUserPassword($userData);
+    }
+
+    static public function startPost($postData)
+    {
+        return self::$dataBaseConnection->startPost($postData);
     }
 }
