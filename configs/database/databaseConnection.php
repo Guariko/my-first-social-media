@@ -186,6 +186,26 @@ class DataBaseClass
             ]);
         }
     }
+
+    public function getAllPosts()
+    {
+        $sql = "SELECT * FROM posts ORDER BY id DESC";
+        $smt = $this->dataBaseConnection->prepare($sql);
+        $smt->execute();
+
+        return $smt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getUserDataById($userId)
+    {
+        $sql = "SELECT * FROM users WHERE id LIKE :id LIMIT 1";
+        $smt = $this->dataBaseConnection->prepare($sql);
+        $smt->execute([
+            ":id" => $userId,
+        ]);
+
+        return $smt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
 class DataBase
@@ -251,5 +271,15 @@ class DataBase
     static public function startPost($postData)
     {
         return self::$dataBaseConnection->startPost($postData);
+    }
+
+    static public function getAllPosts()
+    {
+        return self::$dataBaseConnection->getAllPosts();
+    }
+
+    static public function getUserDataById($userId)
+    {
+        return self::$dataBaseConnection->getUserDataById($userId);
     }
 }

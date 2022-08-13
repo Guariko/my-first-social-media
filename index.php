@@ -36,7 +36,20 @@ include("views/templates/header.php");
 
 ?>
 
-<main class="home__main"></main>
+<main class="home__main main ">
+
+    <section class="users__post__section">
+
+        <?php
+
+        require_once("configs/controllers/usersPostController.php");
+        include("views/usersPost.php");
+
+        ?>
+
+    </section>
+
+</main>
 
 <?php
 

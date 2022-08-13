@@ -21,6 +21,10 @@
     --change-password-input-size: 1.2rem;
     --error-message-size: 1.1rem;
     --post-message-size: 1.2rem;
+    --user-post-name-size: 1.3rem;
+    --datetime-size: 1rem;
+    --mini-reactions-size: 1rem;
+    --reaction-size: 1.2rem;
 }
 
 /* FIXME: Variables end */
@@ -571,6 +575,125 @@
 
 /* FIXME: User profile ends */
 
+/* TODO: Posts start */
+
+.reaction,
+.reactions,
+.mini__reactons__container,
+.reactions__container,
+.user__post__information,
+.post__container,
+.users__post__section,
+.home__main {
+    display: flex;
+}
+
+.home__main {
+    justify-content: center;
+    padding-bottom: 3rem;
+}
+
+.reactions__container,
+.post__container,
+.users__post__section {
+    flex-direction: column;
+}
+
+.users__post__section {
+    width: 100%;
+    max-width: 60rem;
+    gap: 1rem;
+}
+
+.post__container {
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    border-top: 1px solid rgba(0,0,0,0.2);
+    padding: 2rem 1rem;
+    background: var(--main-color);
+    gap: 1rem;
+}
+
+.user__post__information {
+    align-items: center;
+    gap: 1rem;
+}
+
+.user__post__image {
+    width: 4rem;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    border: 1px solid var(--black);
+}
+
+.user__post__name {
+    font-size: var(--user-post-name-size);
+    color: var(--black);
+}
+
+.post__container .post__image__container {
+    background: rgba(0,0,0,0.9);
+}
+
+.post__datetime {
+    font-size: var(--datetime-size);
+    color: var(--black);
+}
+
+.reactions__container {
+    gap: .6rem;
+}
+
+.mini__reactons__container {
+    gap: .5rem;
+}
+
+.mini__reactons__container i {
+    font-size: var(--mini-reactions-size);
+}
+
+.fa-thumbs-up {
+    color: dodgerblue;
+}
+
+.fa-heart {
+    color: rgb(250, 52, 52);
+}
+
+.fa-face-grin-squint-tears {
+    color: #ffcb4c;
+}
+
+.reaction {
+    flex: 1 1;
+    align-items: center;
+    gap: .5rem;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 1rem;
+    font-size: var(--reaction-size);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.reaction i {
+    color: var(--grey);
+}
+
+.reaction i.active {
+    color: dodgerblue;
+}
+
+.user__post__message {
+    font-size: var(--post-message-size);
+    color: var(--black);
+}
+
+.see__more {
+    color: var(--grey);
+    cursor: pointer;
+}
+
+/* FIXME: Posts end */
+
 /* TODO: Media queries start */
 
 @media screen and (min-width: 280px) {
@@ -681,6 +804,14 @@
     }
 
     /* FIXME: User profile adjustments end */
+
+    /* TODO: Posts adjsutments */
+
+    .user__post__image {
+        width: 6rem;
+    }
+
+    /* FIXME: Posts adjsutments end */
     
 }
 
@@ -733,7 +864,21 @@
         justify-content: center;
     }
 
-    /* FIXME: User profile adjsutments end * */
+    /* FIXME: User profile adjsutments end  */
+
+    /* TODO: Posts adjsutments */
+
+    .users__post__section {
+        border-radius: 1rem;
+        border: 1px solid rgba(0,0,0,0.2);
+        max-width: 55rem;
+    }    
+
+    .post__container {
+        padding: 2rem;
+    }
+
+    /* FIXME: Posts ajdsutments end */
     
 }
 

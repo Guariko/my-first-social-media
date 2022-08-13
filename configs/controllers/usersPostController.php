@@ -1,0 +1,3 @@
+<?php
+
+$postsData = DataBase::getAllPosts();
