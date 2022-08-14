@@ -27,6 +27,16 @@ foreach ($postsData as $postData) : ?>
         $seeMore = "see more";
     }
 
+    $displayElement = null;
+
+    $reactionData["userId"] = $_SESSION["userData"]["id"];
+    $reactionData["postId"] = $postData["id"];
+    $liked = DataBase::reactionExists($reactionData);
+
+    if ($liked) {
+        $displayElement = "active";
+    }
+
     ?>
 
     <article class="post__container">
@@ -66,9 +76,10 @@ foreach ($postsData as $postData) : ?>
 
             <div class="mini__reactons__container">
                 <i class="fa-solid fa-thumbs-up"></i> <i class="fa-solid fa-heart"></i> <i class="fa-solid fa-face-grin-squint-tears"></i>
+                <mark class="number__of__reactions" id="<?= $postData["id"] ?>"> <?= $postData["reactions"] ?> </mark>
             </div>
             <div class="reactions">
-                <mark class="reaction"> <i class="fa-solid fa-thumbs-up"></i> like</mark>
+                <mark class="reaction like" data-postid="<?= $postData["id"] ?>"> <i class="fa-solid fa-thumbs-up <?= $displayElement ?> "></i> like</mark>
                 <mark class="reaction"> <i class="fa-solid fa-comment"></i> comment</mark>
             </div>
 

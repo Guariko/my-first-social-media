@@ -56,6 +56,8 @@ include("views/templates/header.php");
 /* TODO: Foot starts */
 
 $scripts = "js/index.js";
+$subScripts = "js/posts.js";
+
 
 include("views/templates/headFoot/foot.php");
 

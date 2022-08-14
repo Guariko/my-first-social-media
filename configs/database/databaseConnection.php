@@ -206,6 +206,66 @@ class DataBaseClass
 
         return $smt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function createReaction($reactionData)
+    {
+        $sql = "INSERT INTO reactions(user_id, post_id, datetime) VALUES(:userId, :postId, now())";
+        $smt = $this->dataBaseConnection->prepare($sql);
+        $smt->execute([
+            ":userId" => $reactionData["userId"],
+            ":postId" => $reactionData["postId"],
+        ]);
+    }
+
+    public function updateReaction($reactionData)
+    {
+
+        $reactionExists = $this->reactionExists($reactionData);
+
+        $sql = "UPDATE posts SET reactions = reactions + 1 WHERE id LIKE :postId";
+
+        if ($reactionExists) {
+            $sql = "UPDATE posts SET reactions = reactions - 1 WHERE id LIKE :postId";
+        }
+
+        $smt = $this->dataBaseConnection->prepare($sql);
+        $smt->execute([
+            ":postId" => $reactionData["postId"],
+        ]);
+    }
+
+    public function reactionExists($reactionData)
+    {
+        $sql = "SELECT * FROM reactions WHERE user_id LIKE :userId AND post_id LIKE :post_id LIMIT 1";
+        $smt = $this->dataBaseConnection->prepare($sql);
+        $smt->execute([
+            ":userId" => $reactionData["userId"],
+            ":post_id" => $reactionData["postId"],
+        ]);
+
+        return $smt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function deleteReaction($reactionData)
+    {
+        $sql = "DELETE FROM reactions WHERE user_id LIKE :userId && post_id LIKE :postId";
+        $smt = $this->dataBaseConnection->prepare($sql);
+        $smt->execute([
+            ":userId" => $reactionData["userId"],
+            ":postId" => $reactionData["postId"],
+        ]);
+    }
+
+    public function getPostReactions($postId)
+    {
+        $sql = "SELECT reactions FROM posts WHERE id LIKE :postId LIMIT 1";
+        $smt = $this->dataBaseConnection->prepare($sql);
+        $smt->execute([
+            ":postId" => $postId,
+        ]);
+
+        return $smt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
 class DataBase
@@ -281,5 +341,30 @@ class DataBase
     static public function getUserDataById($userId)
     {
         return self::$dataBaseConnection->getUserDataById($userId);
+    }
+
+    static public function createReaction($reactionData)
+    {
+        return self::$dataBaseConnection->createReaction($reactionData);
+    }
+
+    static public function updateReaction($reactionData)
+    {
+        return self::$dataBaseConnection->updateReaction($reactionData);
+    }
+
+    static public function reactionExists($reactionData)
+    {
+        return self::$dataBaseConnection->reactionExists($reactionData);
+    }
+
+    static public function deleteReaction($reactionData)
+    {
+        return self::$dataBaseConnection->deleteReaction($reactionData);
+    }
+
+    static public function getPostReactions($postId)
+    {
+        return self::$dataBaseConnection->getPostReactions($postId);
     }
 }

@@ -70,7 +70,7 @@ if (isset($_POST["displayPostImage"])) {
     $postImageTmpName = $_FILES["post__image"]["tmp_name"];
 
     $noError = 0;
-    $minPostImageSize = 120000;
+    $minPostImageSize = 200000;
     $error = "error";
 
     if ($postImageError === $noError) {

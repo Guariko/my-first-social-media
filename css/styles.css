@@ -560,8 +560,8 @@
 .post__image {
     object-fit: cover;
     width: auto;
-    max-height: 30rem;
-    max-width: 100%;
+    max-height: 32rem;
+    max-width: 105%;
 }
 
 .start__post__form .fa-times {
@@ -690,6 +690,12 @@
 .see__more {
     color: var(--grey);
     cursor: pointer;
+}
+
+.number__of__reactions {
+    color: var(--black);
+    font-weight: 500;
+    font-size: 1.1rem;
 }
 
 /* FIXME: Posts end */
