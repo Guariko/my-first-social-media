@@ -25,6 +25,8 @@
     --datetime-size: 1rem;
     --mini-reactions-size: 1rem;
     --reaction-size: 1.2rem;
+    --user-comment-size: 1.2rem;
+    --comment-name-size: 1.2rem;
 }
 
 /* FIXME: Variables end */
@@ -613,6 +615,10 @@
     gap: 1rem;
 }
 
+.post__container p {
+    max-width: 70ch;
+}
+
 .user__post__information {
     align-items: center;
     gap: 1rem;
@@ -690,12 +696,93 @@
 .see__more {
     color: var(--grey);
     cursor: pointer;
+    font-weight: 500;
+}
+
+.hide {
+    color: var(--black);
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .number__of__reactions {
     color: var(--black);
     font-weight: 500;
     font-size: 1.1rem;
+}
+
+.comment__name__paragraph,
+.comment__user__information,
+.comment__form,
+.comments__container {
+    display: flex;
+}
+
+.comments__container {
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.comment__form {
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.comment__form button {
+    font-size: 2.5rem;
+    color: dodgerblue;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.comment__image {
+    width: 4rem;
+    aspect-ratio: 1;
+    border: 1px solid var(--transparent);
+    border-radius: 100%;
+}
+
+.comment__user__information {
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.comment__name {
+    font-size: var(--comment-name-size);
+    color: var(--black);
+}
+
+.user__comment {
+    width: 85%;
+    border: 1px solid var(--black);
+    padding: .6rem 1rem;
+    border-radius: 1rem;
+    height: 4.5rem;
+    min-height: 4.5rem;
+    font-size: var(--user-comment-size);
+    resize: none;
+}
+
+.comment__name__paragraph {
+    flex-direction: column;
+    gap: .5rem;
+    border: 1px solid var(--transparent);
+    background: rgba(0,0,0,0.1);
+    width: 100%;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.comment {
+    font-size: var(--user-comment-size);
+    color: var(--black);
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 /* FIXME: Posts end */
@@ -875,13 +962,13 @@
     /* TODO: Posts adjsutments */
 
     .users__post__section {
-        border-radius: 1rem;
-        border: 1px solid rgba(0,0,0,0.2);
         max-width: 55rem;
     }    
 
     .post__container {
         padding: 2rem;
+        border: 1px solid rgba(0,0,0,0.2);
+        border-radius: 1rem;
     }
 
     /* FIXME: Posts ajdsutments end */

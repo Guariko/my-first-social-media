@@ -37,6 +37,8 @@ foreach ($postsData as $postData) : ?>
         $displayElement = "active";
     }
 
+    $postCommentsData = DataBase::getPostCommentsData($postData["id"]);
+
     ?>
 
     <article class="post__container">
@@ -56,7 +58,7 @@ foreach ($postsData as $postData) : ?>
         </div>
 
         <div class="user__post__content__container">
-            <p class="user__post__message"> <?= $postMessage ?>
+            <p class="user__post__message" data-postid="<?= $postData["id"] ?>"> <?= $postMessage ?>
 
                 <?php if ($seeMore) : ?>
                     <mark class="see__more"><?= $seeMore ?></mark>
@@ -82,6 +84,25 @@ foreach ($postsData as $postData) : ?>
                 <mark class="reaction like" data-postid="<?= $postData["id"] ?>"> <i class="fa-solid fa-thumbs-up <?= $displayElement ?> "></i> like</mark>
                 <mark class="reaction"> <i class="fa-solid fa-comment"></i> comment</mark>
             </div>
+
+        </div>
+
+        <div class="comments__container">
+
+            <form action="" method="POST" class="comment__form" data-postid="<?= $postData["id"] ?>">
+                <textarea name="user__comment" cols="30" rows="10" placeholder="Say something about this post" class="user__comment"></textarea>
+                <button type="submit">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+
+            <article class="comments" data-postid="<?= $postData["id"] ?>">
+
+                <?php if ($postCommentsData) {
+                    include("configs/controllers/commentsController.php");
+                } ?>
+
+            </article>
 
         </div>
 

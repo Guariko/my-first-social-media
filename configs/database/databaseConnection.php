@@ -266,6 +266,40 @@ class DataBaseClass
 
         return $smt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function createComment($commentData)
+    {
+        $sql = "INSERT INTO comments(user_id, post_id, comment, datetime) VALUES(:userId, :postId, :comment, now())";
+        $smt = $this->dataBaseConnection->prepare($sql);
+        $smt->execute([
+            ":userId" => $commentData["userId"],
+            ":postId" => $commentData["postId"],
+            ":comment" => $commentData["comment"],
+
+        ]);
+
+        $this->updateAmountComments($commentData["postId"]);
+    }
+
+    private function updateAmountComments($postId)
+    {
+        $sql = "UPDATE posts SET comments = comments + 1 WHERE id LIKE :postId";
+        $smt = $this->dataBaseConnection->prepare($sql);
+        $smt->execute([
+            ":postId" => $postId,
+        ]);
+    }
+
+    public function getPostCommentsData($postId)
+    {
+        $sql = "SELECT * FROM comments WHERE post_id LIKE :postId ORDER BY id DESC";
+        $smt = $this->dataBaseConnection->prepare($sql);
+        $smt->execute([
+            ":postId" => $postId,
+        ]);
+
+        return $smt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 class DataBase
@@ -366,5 +400,15 @@ class DataBase
     static public function getPostReactions($postId)
     {
         return self::$dataBaseConnection->getPostReactions($postId);
+    }
+
+    static public function createComment($commentData)
+    {
+        return self::$dataBaseConnection->createComment($commentData);
+    }
+
+    static public function getPostCommentsData($postId)
+    {
+        return self::$dataBaseConnection->getPostCommentsData($postId);
     }
 }
